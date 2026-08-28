@@ -52,7 +52,7 @@ If you seed the Blobs manually, create these sheets and headers:
 
 Do not type a plain password into `Password Hash`. Register users through the application so the server creates a salted `scrypt` hash.
 
-Receipt scanning is optional and client-side. The app enlarges and threshold-processes the image, uses Tesseract.js OCR, detects dates/currencies/totals, guesses a category, and presents multiple amount candidates. Camera/image OCR only suggests values; clicking a suggestion places it in the form for review. Nothing from OCR is saved automatically. If camera or OCR is unavailable, manual entry remains available.
+Receipt scanning is optional and review-first. The app sends the image to protected server vision AI when configured, asks specifically for purchased line items, quantity, product description, unit price, row total, currency, date, and category, and presents each item separately. If server AI is unavailable, it runs three local Tesseract preprocessing passes and applies line-item parsing that ignores tax, subtotal, payment, discount, and receipt metadata. Every suggestion must be reviewed before saving.
 
 ## Browser notes
 
