@@ -15,7 +15,7 @@ const rowsFor = (workbook, profile) => XLSX.utils.sheet_to_json(workbook.Sheets[
 const profilesFrom = workbook => XLSX.utils.sheet_to_json(workbook.Sheets.Profiles || {}).map(row => String(row['Profile Name'] || '')).filter(Boolean);
 const authRows = workbook => XLSX.utils.sheet_to_json(workbook.Sheets.Profiles || {});
 const passwordHash = (password, salt = crypto.randomBytes(16).toString('hex')) => `${salt}:${crypto.scryptSync(password, salt, 64).toString('hex')}`;
-const passwordMatches = (password, stored) => { const [salt, digest] = String(stored || '').split(':'); if (!salt || !digest) return false; const actual = crypto.scryptSync(password, salt, 64); return crypto.timingSafeEqual(actual, Buffer.from(digest, 'hex')); };
+const passwordMatches = (password, stored) => { const [salt, digest] = String(stored || '').split(':'); if (!salt || !/^[a-f0-9]{128}$/i.test(digest)) return false; try { const actual = crypto.scryptSync(password, salt, 64); return crypto.timingSafeEqual(actual, Buffer.from(digest, 'hex')); } catch { return false; } };
 
 export default async request => {
   try {
