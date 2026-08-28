@@ -1,0 +1,15 @@
+{
+  "name": "ledgerly-netlify",
+  "private": true,
+  "scripts": {
+    "dev": "netlify dev --port 8888",
+    "check": "node --check script.js && node --check netlify/functions/api.mjs && node --check netlify/functions/ocr.mjs"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^9.0.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "netlify-cli": "^23.0.0"
+  }
+}
