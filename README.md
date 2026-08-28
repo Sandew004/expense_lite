@@ -52,7 +52,7 @@ If you seed the Blobs manually, create these sheets and headers:
 
 Do not type a plain password into `Password Hash`. Register users through the application so the server creates a salted `scrypt` hash.
 
-Receipt scanning is optional and review-first. The app sends the image to protected server vision AI when configured, asks specifically for purchased line items, quantity, product description, unit price, row total, currency, date, and category, and presents each item separately. If server AI is unavailable, it runs three local Tesseract preprocessing passes and applies line-item parsing that ignores tax, subtotal, payment, discount, and receipt metadata. Every suggestion must be reviewed before saving.
+Receipt scanning is optional and review-first. The app sends the image to protected server vision AI when configured, asks specifically for purchased line items, quantity, product description, unit price, row total, currency, date, and category, and presents each item separately. If server AI is unavailable, it runs three local Tesseract preprocessing passes with English and Sinhala language data and applies line-item parsing that ignores tax, subtotal, payment, discount, and receipt metadata. Scan results remain in a scrollable review queue until the user clears them or scans again. Every suggestion must be reviewed before saving.
 
 ## Browser notes
 
